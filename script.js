@@ -106,9 +106,10 @@ function renderCounter() {
         timer.textContent = "Time: " + timeLeft;
         timeLeft--;
 
-        if (timeLeft === -1) {
+        if (timeLeft < 0) {
             timer.textContent = "Time: 0";
             clearInterval(count);
+            endQuiz();
         }
 
     }, 1000);
@@ -139,18 +140,19 @@ function checkAnswer(answer) {
 
 }
 
-if (index < lastQuestIndex) {
     $(".next").on("click", function () {
+
+        if (index < lastQuestIndex) {
         index++;
         console.log(index);
         renderQuestion();
-    }
-    );
-    //how to check when time is over
-} else
-    if (index === lastQuestIndex || timer.text === "Time: 0") {
+    } //how to check when time is over
+    else
+    if (index === lastQuestIndex) {
         endQuiz();
     }
+});
+   
 
 function endQuiz() {
     quiz.style.display = "none";
