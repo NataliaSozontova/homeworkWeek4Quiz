@@ -15,6 +15,12 @@ header {
       font-size: 22px;
       font-weight: bold;
   }
+
+  #done{
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+  }
   .card {
     background-color:pink;
     border-radius: 5px;
@@ -74,4 +80,38 @@ header {
     display: inline-block;
     width: 300px;
   }
+
+  li {
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #ff5d88;
+    color: black;
+    font-size: 22px;
+    line-height: 1.5;
+}
+
+li button {
+    float: right;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    background-color: #ff9500;
+    color: white;
+    font-size: 1em;
+}
   
+#final-score { 
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: purple;
+}
+
+#displayScore {
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+}
