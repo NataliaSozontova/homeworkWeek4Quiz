@@ -16,7 +16,7 @@ var userInitialsSpan = document.getElementById("user-initials");
 
 
 var index = 0;
-var lastQuestIndex = 3;
+var lastQuestIndex = 5;
 var count = 0;
 var score = 0;
 
@@ -116,7 +116,7 @@ function renderCounter() {
 
 
 function checkAnswer(answer) {
-    console.log(index);
+
     if (questions[index].correct === answer) {
         score++;
         scoreEl.text("Score: " + score);
@@ -124,19 +124,33 @@ function checkAnswer(answer) {
         timeLeft -= 5;
     }
 
-    if (index < lastQuestIndex) {
-        $(".next").on("click", function () {
-            index++;
-            renderQuestion();
-        }
-        );
-        //how to check when time is over
-    } else
-        if (index === lastQuestIndex || timer.text === "Time: 0") {
-            endQuiz();
-        }
+    // if (index < lastQuestIndex) {
+    //     $(".next").on("click", function () {
+    //         index++;
+    //         console.log(index);
+    //         renderQuestion();
+    //     }
+    //     );
+    //     //how to check when time is over
+    // } else
+    //     if (index === lastQuestIndex || timer.text === "Time: 0") {
+    //         endQuiz();
+    //     }
 
 }
+
+if (index < lastQuestIndex) {
+    $(".next").on("click", function () {
+        index++;
+        console.log(index);
+        renderQuestion();
+    }
+    );
+    //how to check when time is over
+} else
+    if (index === lastQuestIndex || timer.text === "Time: 0") {
+        endQuiz();
+    }
 
 function endQuiz() {
     quiz.style.display = "none";
