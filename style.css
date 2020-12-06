@@ -1,0 +1,77 @@
+body {
+    background-image: url(https://st4.depositphotos.com/10325396/20758/i/1600/depositphotos_207585344-stock-photo-digital-code-number-abstract-background.jpg);
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    padding-top: 20px;
+    color: black;
+  }
+
+
+  #question {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+  }
+  .card {
+    background-color:pink;
+    border-radius: 5px;
+    border-width: 1px;
+    box-shadow: purple 4px 8px 8px 4px;
+    color:black;
+    /* font-size: 18px; */
+    margin: 0 auto;
+    width: 60%;
+    padding: 50px 40px;
+    box-sizing: border-box;
+  }
+
+  .btn {
+    border: none;
+    background-color: purple;
+    border-radius: 25px;
+    color: white;
+    display: block;
+    font-size: 22px;
+    line-height: 22px;
+    margin: 0 auto;
+    padding: 14px 14px;
+    text-align: center;
+    width:auto;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+
+  .btn.next {
+    border: none;
+    background-color: purple;
+    border-radius: 25px;
+    color: white;
+    display: block;
+    font-size: 22px;
+    line-height: 22px;
+    margin: 0 auto;
+    padding: 14px 14px;
+    text-align: center;
+    width:500px; 
+    display: inline-block; 
+  }
+
+  .timer{
+      text-align: left;
+      font-size: 22px;
+      font-weight: bold;
+      display: inline-block;
+      width:300px; 
+  }
+
+  .score {
+    text-align: right;
+    font-size: 22px;
+    font-weight: bold;
+    display: inline-block;
+    width: 300px;
+  }
+  
