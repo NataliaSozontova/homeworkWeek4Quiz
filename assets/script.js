@@ -9,24 +9,29 @@ var scoreEl = $("#score");
 var finalScore = $("#finalScore");
 var initialsInput = document.querySelector("#playerInitials");
 // var initialsForm = document.querySelector("#initials-form");
-// var initialsList = document.querySelector("#initials-list");
+var initialsList = document.querySelector("#initials-list");
 var submitBtn = $("#submit");
 var userInitialsSpan = document.getElementById("user-initials");
 // var userScoreSpan = document.getElementById("user-score");
 
 
-var index = 0;
+var index;
 var lastQuestIndex = 5;
-var count = 0;
-var score = 0;
+var count;
+var score;
+var timeLeft;
 
 $("#start").on("click", startQuiz);
 
 function startQuiz() {
+    score = 0;
+    index = 0;
+    timeLeft = 35;
     start.style.display = "none";
     renderCounter();
     renderQuestion();
     quiz.style.display = "block";
+    timer.textContent = "Time: " + timeLeft;
 
 }
 var questions = [
@@ -41,11 +46,11 @@ var questions = [
     },
     {
         "q": "Q.2 Inside which HTML element do we put the JavaScript??",
-        "op1": "<javascript>",
+        "op1": "<script>",
         "op2": "<>",
         "op3": "<js>",
         "op4": "<scripting>",
-        "correct": "<javascript>"
+        "correct": "<script>"
     },
     {
         "q": "Q.3 Which are the correct if statements to execute certain code if “x” is equal to 2?",
@@ -98,11 +103,10 @@ $(".option").on("click", function () {
     checkAnswer($(this).text());
 });
 
-var timeLeft = 15;
 
 function renderCounter() {
     // Create the countdown timer.
-    var count = setInterval(function () {
+    count = setInterval(function () {
         timer.textContent = "Time: " + timeLeft;
         timeLeft--;
 
@@ -124,35 +128,22 @@ function checkAnswer(answer) {
     } else {
         timeLeft -= 5;
     }
-
-    // if (index < lastQuestIndex) {
-    //     $(".next").on("click", function () {
-    //         index++;
-    //         console.log(index);
-    //         renderQuestion();
-    //     }
-    //     );
-    //     //how to check when time is over
-    // } else
-    //     if (index === lastQuestIndex || timer.text === "Time: 0") {
-    //         endQuiz();
-    //     }
-
 }
 
-    $(".next").on("click", function () {
+$(".next").on("click", function () {
 
-        if (index < lastQuestIndex) {
+    if (index < lastQuestIndex) {
         index++;
         console.log(index);
         renderQuestion();
     } //how to check when time is over
     else
-    if (index === lastQuestIndex) {
-        endQuiz();
-    }
+        if (index === lastQuestIndex) {
+            clearInterval(count);
+            endQuiz();
+        }
 });
-   
+
 
 function endQuiz() {
     quiz.style.display = "none";
@@ -170,23 +161,74 @@ submitBtn.on("click", function (e) {
         initials: initialsInput.value.trim(),
         scoreRes: score
     }
-    console.log(score)
-    console.log(results);
 
-    // set new submission
-    localStorage.setItem("results", JSON.stringify(results));
-
-    // get most recent submission
-    var storedResults = JSON.parse(localStorage.getItem("results"));
+    var storedResults = JSON.parse(localStorage.getItem("results")) || [];
+    console.log("Stored " + storedResults);
+    storedResults.push(results);
+    storedResults.sort((a, b) => (a.scoreRes > b.scoreRes) ? -1 : 1)
     console.log(storedResults);
-    console.log(userInitialsSpan.textContent = storedResults.initials + " - " + storedResults.scoreRes);
+    localStorage.setItem("results", JSON.stringify(storedResults));
 
-    // If results were retrieved from localStorage, update the results array to it
-    if (storedResults !== null) {
-        results = storedResults;
-    }
-    console.log(results);
+    highScores();
 });
+
+function highScores(){
+    var scores = JSON.parse(localStorage.getItem("results"));
+
+     // Render a new li for each object of scores Array
+    for (var i = 0; i < 3; i++) {
+      var initialsValue = scores[i].initials;
+      var scoreValue = scores[i].scoreRes;
+
+      var li = document.createElement("li");
+      li.textContent = initialsValue + " - score [ " + scoreValue + " ]";
+      li.setAttribute("data-index", i);
+      initialsList.appendChild(li);
+    }
+}
+
+
+    // if(storedResults == null){
+    //     var storageArray = [];
+    //     storageArray.push(results);
+    //     console.log(storageArray);
+    //     console.log(localStorage.setItem("results", JSON.stringify(storageArray)));
+    //     var storedResults = JSON.parse(localStorage.getItem("results"));
+    //     userInitialsSpan.textContent = storedResults.initials + " - " + storedResults.scoreRes;
+    //     // console.log(storageArray);
+    //     // localStorage.setItem(storageArray);
+
+    // } else {
+    //     // storedResults.push(results);
+    //     // localStorage.setItem(storedResults);
+    //     console.log(storedResults);
+    // }
+    // console.log(score)
+    // console.log(results);
+
+    //  var storageArray = [];
+    //  storageArray.push(results);
+    //  console.log(storageArray);
+
+    // // get most recent submission
+    // var storedResults = JSON.parse(localStorage.getItem("results"));
+    // console.log(storedResults);
+    // console.log(userInitialsSpan.textContent = storedResults.initials + " - " + storedResults.scoreRes);
+
+    // // If results were retrieved from localStorage, update the results array to it
+    // if (storedResults == null) {
+    //     // results = storedResults;
+    //     localStorage.setItem(storageArray);
+    // }else {
+
+    // }
+
+    // // set new submission
+    // localStorage.setItem("results", JSON.stringify(results));
+
+
+    // console.log(results);
+
 
 
 

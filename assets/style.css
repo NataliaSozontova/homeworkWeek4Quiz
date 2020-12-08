@@ -45,9 +45,13 @@ header {
     margin: 0 auto;
     padding: 14px 14px;
     text-align: center;
-    width:auto;
+    width:100%;
     white-space: normal;
     word-wrap: break-word;
+  }
+
+  .footer {
+    text-align: center;
   }
 
   .btn.next {
@@ -61,24 +65,26 @@ header {
     margin: 0 auto;
     padding: 14px 14px;
     text-align: center;
-    width:500px; 
+    width:60%; 
     display: inline-block; 
   }
 
-  .timer{
+  #timer{
       text-align: left;
       font-size: 22px;
+      border-radius: 25px;
       font-weight: bold;
       display: inline-block;
-      width:300px; 
+      width:12%; 
   }
 
-  .score {
+  #score {
     text-align: right;
     font-size: 22px;
     font-weight: bold;
+    border-radius: 25px;
     display: inline-block;
-    width: 300px;
+    width: 12%;
   }
 
   li {

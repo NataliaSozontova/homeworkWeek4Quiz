@@ -7,13 +7,13 @@
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- My style css -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="assets/style.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    <div class="card mt-3">
+    <div class="container card mt-3">
         <div>
             <button id="start" class="btn">Start Quiz</button>
         </div>
@@ -25,25 +25,23 @@
                     <label for="playerInitials">Please enter your initials</label>
                     <input type="text" placeholder="Initials" name="playerInitials" id="playerInitials" />
                 </form>
-                <ul id="initials-list">
-                </ul>
+
             </div>
             <br>
             <button class="btn" id="submit">Submit</button>
         </div>
-            <div id="result" style="display: none;">
-       
-                <h2 id="final-score">Your Score:</h2>
-                <br>
-               <div id="displayScore">
-                   <ol>
-                    <li id="user-initials"></li>
-                   </ol>
-                </div>
-            
-           </div>
+        <div id="result" style="display: none;">
 
-       
+            <h2 id="final-score">Highest Scores:</h2>
+            <br>
+            <div id="displayScore">
+                <ol id="initials-list">
+                </ol>
+            </div>
+
+        </div>
+
+
         <div id="quiz" style="display: none;">
 
             <header id="question" class="card-header">
@@ -51,7 +49,7 @@
             </header>
 
             <div class="card-body">
-                
+
                 <div class="options text-align">
                     <button id="op1" class="btn option"></button>
                     <br>
@@ -63,7 +61,7 @@
                 </div>
 
             </div>
-            <div class="footer">
+            <div class="footer ">
                 <button id="timer"></button>
                 <button class="btn next">next</button>
                 <button id="score">Score: 0</button>
@@ -73,7 +71,9 @@
 
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="script.js"></script>
+        <script src="assets/script.js"></script>
+
+    </div>
 </body>
 
 </html>
