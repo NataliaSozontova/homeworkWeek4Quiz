@@ -35,12 +35,12 @@ function startQuiz() {
 var questions = [
 
     {
-        "q": "Q.1 What is JavaScript definition?",
-        "op1": "a class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible",
-        "op2": "an object-oriented computer programming language commonly used to create interactive effects within web browsers",
-        "op3": "an interpreted, object-oriented, high-level programming language with dynamic semantics",
-        "op4": "an imperative and procedural programming language intended to encourage good programming practices using structured programming and data structuring",
-        "correct": "an object-oriented computer programming language commonly used to create interactive effects within web browsers"
+        "q": "Q.1 Which of the following statements will show a message as well as ask for user input in a popup?",
+        "op1": "alert()",
+        "op2": "prompt()",
+        "op3": "confirm()",
+        "op4": "message()",
+        "correct": "prompt()"
     },
     {
         "q": "Q.2 Inside which HTML element do we put the JavaScript??",
@@ -75,12 +75,12 @@ var questions = [
         "correct": "Math.min(x,y)"
     },
     {
-        "q": "Q.6 What is the correct JavaScript syntax to print “DataFlair” in the console?",
-        "op1": "print(“DataFlair”);",
-        "op2": "console.print(“DataFlair”);",
-        "op3": "log.console(“DataFlair”);",
-        "op4": "console.log(“DataFlair”);",
-        "correct": "console.log(“DataFlair”);"
+        "q": "Q.6 What is the correct JavaScript syntax to print “Coding” in the console?",
+        "op1": "print(“Coding”);",
+        "op2": "console.print(“Coding”);",
+        "op3": "log.console(“Coding”);",
+        "op4": "console.log(“Coding”);",
+        "correct": "console.log(“Coding”);"
     }
 
 
@@ -130,13 +130,13 @@ function checkAnswer(answer) {
 
 $(".next").on("click", function () {
 
-    if (index < lastQuestIndex) {
+    if (index < questions.length - 1) {
         index++;
         console.log(index);
         renderQuestion();
     } //how to check when time is over
     else
-        if (index === lastQuestIndex) {
+        if (index === questions.length - 1) {
             clearInterval(count);
             endQuiz();
         }
