@@ -6,20 +6,18 @@ var option3 = $("#op3");
 var option4 = $("#op4");
 var timer = document.getElementById("timer");
 var scoreEl = $("#score");
-var finalScore = $("#finalScore");
+var finalScore = $("#final-score");
 var initialsInput = document.querySelector("#playerInitials");
-// var initialsForm = document.querySelector("#initials-form");
-var initialsList = document.querySelector("#initials-list");
+var initialsList = document.querySelector("#scores-list");
 var submitBtn = $("#submit");
 var userInitialsSpan = document.getElementById("user-initials");
-// var userScoreSpan = document.getElementById("user-score");
-
 
 var index;
 var lastQuestIndex = 5;
 var count;
 var score;
 var timeLeft;
+var results;
 
 $("#start").on("click", startQuiz);
 
@@ -148,7 +146,7 @@ $(".next").on("click", function () {
 function endQuiz() {
     quiz.style.display = "none";
     done.style.display = "block";
-    finalScore.text("Your score is " + score);
+    finalScore.text("Your final score is " + score);
 
 }
 
@@ -157,7 +155,7 @@ submitBtn.on("click", function (e) {
     done.style.display = "none";
     result.style.display = "block";
 
-    var results = {
+     results = {
         initials: initialsInput.value.trim(),
         scoreRes: score
     }
@@ -186,6 +184,20 @@ function highScores(){
       initialsList.appendChild(li);
     }
 }
+
+$("#play").on("click", function() {
+    result.style.display = "none";
+    $(initialsList).empty();
+    initialsInput.value = "";
+    startQuiz();
+});
+
+$("#clear").on("click", function() {
+    $(initialsList).empty();
+    results = [];
+    localStorage.setItem("results", JSON.stringify(results));
+});
+
 
 
     // if(storedResults == null){

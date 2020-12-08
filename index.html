@@ -17,30 +17,6 @@
         <div>
             <button id="start" class="btn">Start Quiz</button>
         </div>
-        <div id="done" style="display: none;">
-            <p>The quiz is done!</p>
-            <p id="finalScore"></p>
-            <div class="players">
-                <form id="initials-form" method="POST">
-                    <label for="playerInitials">Please enter your initials</label>
-                    <input type="text" placeholder="Initials" name="playerInitials" id="playerInitials" />
-                </form>
-
-            </div>
-            <br>
-            <button class="btn" id="submit">Submit</button>
-        </div>
-        <div id="result" style="display: none;">
-
-            <h2 id="final-score">Highest Scores:</h2>
-            <br>
-            <div id="displayScore">
-                <ol id="initials-list">
-                </ol>
-            </div>
-
-        </div>
-
 
         <div id="quiz" style="display: none;">
 
@@ -61,19 +37,46 @@
                 </div>
 
             </div>
-            <div class="footer ">
-                <button id="timer"></button>
-                <button class="btn next">next</button>
-                <button id="score">Score: 0</button>
+            <div class="footer">
+                <button class="scoreAndTime" id="timer"></button>
+                <button class="btn next">Next</button>
+                <button class="scoreAndTime" id="score">Score: 0</button>
             </div>
 
         </div>
 
+        <div id="done" style="display: none;">
+            <p>The quiz is done!</p>
+            <p id="final-score"></p>
+            <div class="players">
+                <form id="initials-form" method="POST">
+                    <label for="playerInitials">Please enter your initials</label>
+                    <input type="text" placeholder="Initials" name="playerInitials" id="playerInitials" />
+                </form>
+            </div>
+            <br>
+            <button class="btn" id="submit">Submit</button>
+        </div>
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="assets/script.js"></script>
+        <div id="result" style="display: none;">
+            <h2 id="final-score">Highest Scores:</h2>
+            <br>
+            <div id="displayScores">
+                <ol id="scores-list">
+                </ol>
+            </div>
+            <div class = "lastPage">
+                <button class="btn" id="play">Play again</button>
+                <br>
+                <button class="btn" id="clear">Clear scores</button>
+            </div>
+        </div>
 
     </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/script.js"></script>
+
 </body>
 
 </html>
