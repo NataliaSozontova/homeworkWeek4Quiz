@@ -17,7 +17,7 @@ var lastQuestIndex = 5;
 var count;
 var score;
 var timeLeft;
-var results;
+var results = [];
 
 $("#start").on("click", startQuiz);
 
@@ -155,11 +155,11 @@ submitBtn.on("click", function (e) {
     done.style.display = "none";
     result.style.display = "block";
 
-     results = {
+    var results = {
         initials: initialsInput.value.trim(),
         scoreRes: score
     }
-
+    console.log("first entered results: ", results);
     var storedResults = JSON.parse(localStorage.getItem("results")) || [];
     console.log("Stored " + storedResults);
     storedResults.push(results);
@@ -170,29 +170,45 @@ submitBtn.on("click", function (e) {
     highScores();
 });
 
-function highScores(){
+function highScores() {
     var scores = JSON.parse(localStorage.getItem("results"));
+    console.log("scores array from local storage: ", scores);
+    var limit;
+    // Render a new li for each object of scores Array
+    if (scores.length < 3) {
+        // for (var i = 0; i < scores.length; i++) {
+        //     var initialsValue = scores[i].initials;
+        //     var scoreValue = scores[i].scoreRes;
 
-     // Render a new li for each object of scores Array
-    for (var i = 0; i < 3; i++) {
-      var initialsValue = scores[i].initials;
-      var scoreValue = scores[i].scoreRes;
-
-      var li = document.createElement("li");
-      li.textContent = initialsValue + " - score [ " + scoreValue + " ]";
-      li.setAttribute("data-index", i);
-      initialsList.appendChild(li);
+        //     var li = document.createElement("li");
+        //     li.textContent = initialsValue + " - score [ " + scoreValue + " ]";
+        //     li.setAttribute("data-index", i);
+        //     initialsList.appendChild(li);
+        limit = scores.length
+    } else {
+        limit = 3;
     }
+        
+    for (var i = 0; i < limit ; i++) {
+            var initialsValue = scores[i].initials;
+            var scoreValue = scores[i].scoreRes;
+
+            var li = document.createElement("li");
+            li.textContent = initialsValue + " - score [ " + scoreValue + " ]";
+            li.setAttribute("data-index", i);
+            initialsList.appendChild(li);
+        }
+    
 }
 
-$("#play").on("click", function() {
+$("#play").on("click", function () {
     result.style.display = "none";
     $(initialsList).empty();
     initialsInput.value = "";
     startQuiz();
 });
 
-$("#clear").on("click", function() {
+$("#clear").on("click", function () {
     $(initialsList).empty();
     results = [];
     localStorage.setItem("results", JSON.stringify(results));
