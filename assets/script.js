@@ -13,18 +13,19 @@ var submitBtn = $("#submit");
 var userInitialsSpan = document.getElementById("user-initials");
 
 var index;
-var lastQuestIndex = 5;
 var count;
 var score;
 var timeLeft;
 var results = [];
 
+// event for start button
 $("#start").on("click", startQuiz);
 
+//start quiz function which calling 2 methods - set up the count and pull the questions
 function startQuiz() {
     score = 0;
     index = 0;
-    timeLeft = 35;
+    timeLeft = 60;
     start.style.display = "none";
     renderCounter();
     renderQuestion();
@@ -32,6 +33,8 @@ function startQuiz() {
     timer.textContent = "Time: " + timeLeft;
 
 }
+
+// questions Array of objects
 var questions = [
 
     {
@@ -83,11 +86,9 @@ var questions = [
         "correct": "console.log(“Coding”);"
     }
 
-
-
 ]
 
-
+// function which printing questions and options
 function renderQuestion() {
     question.text(questions[index].q);
     option1.text(questions[index].op1);
@@ -96,14 +97,14 @@ function renderQuestion() {
     option4.text(questions[index].op4);
 }
 
+// option event when user pick  up the answer and calls checkAnswer function 
 $(".option").on("click", function () {
     console.log($(this).text())
     checkAnswer($(this).text());
 });
 
-
+// Create the countdown timer
 function renderCounter() {
-    // Create the countdown timer.
     count = setInterval(function () {
         timer.textContent = "Time: " + timeLeft;
         timeLeft--;
@@ -117,7 +118,7 @@ function renderCounter() {
     }, 1000);
 }
 
-
+//checking the answer
 function checkAnswer(answer) {
 
     if (questions[index].correct === answer) {
@@ -128,13 +129,14 @@ function checkAnswer(answer) {
     }
 }
 
+// event for clicking on next button
 $(".next").on("click", function () {
 
     if (index < questions.length - 1) {
         index++;
         console.log(index);
         renderQuestion();
-    } //how to check when time is over
+    }
     else
         if (index === questions.length - 1) {
             clearInterval(count);
@@ -142,7 +144,7 @@ $(".next").on("click", function () {
         }
 });
 
-
+// end quiz function when clicking last question
 function endQuiz() {
     quiz.style.display = "none";
     done.style.display = "block";
@@ -150,6 +152,7 @@ function endQuiz() {
 
 }
 
+// event for clicking on submit button, stores user results in local storage
 submitBtn.on("click", function (e) {
     e.preventDefault();
     done.style.display = "none";
@@ -170,37 +173,31 @@ submitBtn.on("click", function (e) {
     highScores();
 });
 
+// function to print out 3 highest results from stored in local storage
 function highScores() {
     var scores = JSON.parse(localStorage.getItem("results"));
     console.log("scores array from local storage: ", scores);
     var limit;
-    // Render a new li for each object of scores Array
-    if (scores.length < 3) {
-        // for (var i = 0; i < scores.length; i++) {
-        //     var initialsValue = scores[i].initials;
-        //     var scoreValue = scores[i].scoreRes;
 
-        //     var li = document.createElement("li");
-        //     li.textContent = initialsValue + " - score [ " + scoreValue + " ]";
-        //     li.setAttribute("data-index", i);
-        //     initialsList.appendChild(li);
+    if (scores.length < 3) {
         limit = scores.length
     } else {
         limit = 3;
     }
-        
-    for (var i = 0; i < limit ; i++) {
-            var initialsValue = scores[i].initials;
-            var scoreValue = scores[i].scoreRes;
 
-            var li = document.createElement("li");
-            li.textContent = initialsValue + " - score [ " + scoreValue + " ]";
-            li.setAttribute("data-index", i);
-            initialsList.appendChild(li);
-        }
-    
+    for (var i = 0; i < limit; i++) {
+        var initialsValue = scores[i].initials;
+        var scoreValue = scores[i].scoreRes;
+
+        var li = document.createElement("li");
+        li.textContent = initialsValue + " - score [ " + scoreValue + " ]";
+        li.setAttribute("data-index", i);
+        initialsList.appendChild(li);
+    }
+
 }
 
+// event for clicking play button
 $("#play").on("click", function () {
     result.style.display = "none";
     $(initialsList).empty();
@@ -208,6 +205,7 @@ $("#play").on("click", function () {
     startQuiz();
 });
 
+//event for clicking clear button to delete data from local storage
 $("#clear").on("click", function () {
     $(initialsList).empty();
     results = [];
@@ -216,128 +214,3 @@ $("#clear").on("click", function () {
 
 
 
-    // if(storedResults == null){
-    //     var storageArray = [];
-    //     storageArray.push(results);
-    //     console.log(storageArray);
-    //     console.log(localStorage.setItem("results", JSON.stringify(storageArray)));
-    //     var storedResults = JSON.parse(localStorage.getItem("results"));
-    //     userInitialsSpan.textContent = storedResults.initials + " - " + storedResults.scoreRes;
-    //     // console.log(storageArray);
-    //     // localStorage.setItem(storageArray);
-
-    // } else {
-    //     // storedResults.push(results);
-    //     // localStorage.setItem(storedResults);
-    //     console.log(storedResults);
-    // }
-    // console.log(score)
-    // console.log(results);
-
-    //  var storageArray = [];
-    //  storageArray.push(results);
-    //  console.log(storageArray);
-
-    // // get most recent submission
-    // var storedResults = JSON.parse(localStorage.getItem("results"));
-    // console.log(storedResults);
-    // console.log(userInitialsSpan.textContent = storedResults.initials + " - " + storedResults.scoreRes);
-
-    // // If results were retrieved from localStorage, update the results array to it
-    // if (storedResults == null) {
-    //     // results = storedResults;
-    //     localStorage.setItem(storageArray);
-    // }else {
-
-    // }
-
-    // // set new submission
-    // localStorage.setItem("results", JSON.stringify(results));
-
-
-    // console.log(results);
-
-
-
-
-
-// var initials =[];
-
-// function renderInitials() {
-//     // Clear initialsList element
-//     initialsList.innerHTML = "";
-
-//     // Render a new li for each initials
-//     for (var i = 0; i < initials.length; i++) {
-//       var initial = initials[i];
-
-//       var li = document.createElement("li");
-//       li.textContent = initial + " - score [ " + score + " ]";
-//       li.setAttribute("data-index", i);
-
-//       var button = document.createElement("button");
-//       button.textContent = "Clear";
-
-//       li.appendChild(button);
-//       initialsList.appendChild(li);
-//     }
-//   }
-
-//   function init() {
-//     // Get stored intials from localStorage
-//     // Parsing the JSON string to an object
-//     var storedInitials = JSON.parse(localStorage.getItem("initials"));
-
-//     // If todos were retrieved from localStorage, update the todos array to it
-//     if (storedInitials !== null) {
-//       initials = storedInitials;
-//     }
-
-//     // Render todos to the DOM
-//     renderInitials();
-//   }
-
-
-//   function storeInitials() {
-//     // Stringify and set "initials" key in localStorage to todos array
-//     localStorage.setItem("initials", JSON.stringify(initials));
-//     localStorage.setItem("score", JSON.stringify(score));
-//   }
-
-//   // When form is submitted...
-//     initialsForm.addEventListener("submit", function(event) {
-//     event.preventDefault();
-
-//     var initialsText = initialsInput.value.trim();
-
-//     // Return from function early if submitted todoText is blank
-//     if (initialsText === "") {
-//       return;
-//     }
-
-//     // Add new initialText to todos array, clear the input
-//     initials.push(initialsText);
-//     initialsInput.value = "";
-
-//     // Store updated todos in localStorage, re-render the list
-//     storeInitials();
-//     renderInitials();
-//   });
-
-//   // When a element inside of the initialsList is clicked...
-// initialsList.addEventListener("click", function(event) {
-//     var element = event.target;
-
-//     // If that element is a button...
-//     if (element.matches("button") === true) {
-//       // Get its data-index value and remove the todo element from the list
-//       var index = element.parentElement.getAttribute("data-index");
-//       initials.splice(index, 1);
-
-//       // Store updated todos in localStorage, re-render the list
-//       storeInitials();
-//       renderInitials();
-//     }
-//   });
-
-// init();
