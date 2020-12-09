@@ -2,6 +2,10 @@ body {
   background-repeat: no-repeat;  
   background-size: 100%;
   background-image: url(./images/backgroundQuiz.jpg);
+  min-height: 100vh; 
+  margin: 0; 
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 header {
@@ -139,3 +143,101 @@ li button {
     font-weight: bold;
     color: black;
 }
+
+ 
+ @media screen and (max-width: 500px) {
+   .btn {
+       width: 100%;
+       text-align: center;
+   }
+
+   #start 
+   {
+    width: 100%;
+    text-align: center; 
+  }
+   #next
+   {
+    width: 100%;
+    text-align: center; 
+  } 
+   #play 
+   {
+    width: 100%;
+    text-align: center; 
+  }
+   #submit
+   {
+    width: 100%;
+    text-align: center; 
+  } 
+   #clear
+   {
+    width: 100%;
+    text-align: center; 
+  }
+  li button {
+    width: 100%;
+    text-align: justify;
+  }
+
+  .scoreAndTime {
+    display: block;
+    text-align: center;
+    width:100%;
+    white-space: normal;
+    word-wrap: break-word;
+    margin: 10px;
+    
+  }
+ 
+ }
+ 
+ /* Smartphones (portrait and landscape) ----------- */
+ @media only screen and (min-device-width : 320px) {
+   .btn {
+       width: 100%;
+       text-align: center;
+   }
+
+   #start 
+   {
+    width: 100%;
+    text-align: center; 
+  }
+   #next
+   {
+    width: 100%;
+    text-align: center; 
+  } 
+   #play 
+   {
+    width: 100%;
+    text-align: center; 
+  }
+   #submit
+   {
+    width: 100%;
+    text-align: center; 
+  } 
+   #clear
+   {
+    width: 100%;
+    text-align: center; 
+  }
+
+  li button {
+    width: 100%;
+    text-align: justify;
+  }
+  .scoreAndTime {
+    display: block;
+    text-align: center;
+    width:100%;
+    white-space: normal;
+    word-wrap: break-word;
+    margin: 10px;
+  }
+ 
+   }
+ 
