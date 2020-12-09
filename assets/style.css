@@ -1,5 +1,7 @@
 body {
-    background-image: url(./images/backgroundQuiz.jpg);
+  background-repeat: no-repeat;  
+  background-size: 100%;
+  background-image: url(./images/backgroundQuiz.jpg);
 }
 
 header {
@@ -16,6 +18,9 @@ header {
       font-weight: bold;
   }
 
+  #playerInitials{
+    width: 60%;
+  }
   h3 {
     text-align: center;
     font-size: 22px;
@@ -67,6 +72,10 @@ header {
     word-wrap: break-word;
   }
 
+  .start {
+    width: 30%;
+  }
+
   /* .option {
     text-align: left;
   } */
@@ -76,8 +85,20 @@ header {
   }
 
   .next {
-    width:60%; 
+    width:50%; 
     display: inline-block; 
+  }
+
+  #play {
+    width: 40%;
+  }
+
+  #clear {
+    width: 40%;
+  }
+
+  #submit {
+    width: 30%;
   }
 
   .scoreAndTime {
@@ -87,9 +108,13 @@ header {
       font-weight: bold;
       display: inline-block;
       text-align: center;
-      width:12%; 
+      width:15%; 
       padding: auto;
   }
+
+  /* media-query {} */
+  /* flex-box */
+  
 /* 
   #score {
     text-align: right;
